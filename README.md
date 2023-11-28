@@ -51,3 +51,29 @@ diff.
 ```bash
 icediff ... | tabview -
 ```
+
+## Development
+
+The project use [poetry] to manage
+dependencies. You can install the project in dev mode with:
+
+```bash
+poetry install
+```
+
+In the root of the project.
+
+This will create an environment dedicated to the project in
+`~/.cache/pypoetry/virtualenvs/` with the dependencies needed installed.
+
+You can then run the cli with:
+
+```bash
+poetry run icediff
+```
+
+All the files should use [black] formatting and [ruff] linting.
+
+[poetry]: https://github.com/python-poetry/poetry
+[black]: https://github.com/psf/black
+[ruff]: https://github.com/charliermarsh/ruff
