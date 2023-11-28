@@ -63,19 +63,21 @@ def main(
     ] = False,
 ):
     col_subset = col_subset.split(",")
-    comparator = IceScreenCompare(ref_folder, cmp_folder, col_subset=col_subset)
+    comparator = IceScreenCompare(
+        ref_folder.absolute(), cmp_folder.absolute(), col_subset=col_subset
+    )
     df_diff = comparator.compare_all()
 
     if dataset_ref_file is not None:
-        phylum_mapping = read_dataset_ref(dataset_ref_file)
+        phylum_mapping = read_dataset_ref(dataset_ref_file.absolute())
         df_diff = add_phylum_column(df_diff, phylum_mapping)
 
     df_diff = df_diff.sort_index()
 
     if output_file:
-        df_diff.to_csv(output_file, sep="\t")
+        df_diff.to_csv(output_file.absolute(), sep="\t")
     if not quiet:
-        typer.echo(df_diff.to_csv())
+        typer.echo(df_diff.to_csv(sep="\t"))
 
 
 if __name__ == "__main__":
