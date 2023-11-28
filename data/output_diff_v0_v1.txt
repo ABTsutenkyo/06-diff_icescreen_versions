@@ -1,0 +1,44 @@
+
+
+********** Pseudomonadota **********
+1 genomes found with differences between the two ICEscreen results
+
+** CP002447.1_detected_SP_withMEIds (2 SP with different results)
+ - with different Id_of_blast_most_similar_ref_SP:
+id_locus_tag	Id_of_blast_most_similar_ref_SP_in_base	Id_of_blast_most_similar_ref_SP_in_modified
+Mesci_3843	AAO80999	AAO80333
+ - with different Profile_name:
+id_locus_tag	Profile_name_in_base	Profile_name_in_modified
+Mesci_3905	t4cp1	Phage_integrase
+
+
+
+********** Actinomycetota **********
+1 genomes found with differences between the two ICEscreen results
+
+** CP002802.1_detected_SP_withMEIds (1 SP with different results)
+ - in v1 but not in v0:
+id_locus_tag
+Merci_5527
+
+
+
+********** Bacillota **********
+1 genomes found with differences between the two ICEscreen results
+
+** NC_004368.1_detected_SP_withMEIds (6 SP with different results)
+ - in v0 but not in v1:
+id_locus_tag
+GBS_RS01565
+GBS_RS07190
+ - in v1 but not in v0:
+id_locus_tag
+Mesci_4836
+Mesci_4912
+ - with different Profile_name:
+id_locus_tag	Profile_name_in_base	Profile_name_in_modified
+GBS_RS05310	t4cp1_MODIF	t4cp1
+ - with different Id_of_blast_most_similar_ref_SP and Profile_name:
+id_locus_tag	Id_of_blast_most_similar_ref_SP_in_base	Id_of_blast_most_similar_ref_SP_in_modified	Profile_name_in_base	Profile_name_in_modified
+GBS_RS05370	CAD46654_MODIF	CAD46654	T4SS_MOBP2_MODIF	T4SS_MOBP2
+

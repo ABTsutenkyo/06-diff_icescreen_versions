@@ -1,0 +1,6 @@
+
+##################### Main parameters of the ICEscreen analysis #####################
+Maximum distance in CDS between consecutive SPs within a segments:	100
+Maximum distance in CDS between consecutive SPs within an IME element:	14
+
+

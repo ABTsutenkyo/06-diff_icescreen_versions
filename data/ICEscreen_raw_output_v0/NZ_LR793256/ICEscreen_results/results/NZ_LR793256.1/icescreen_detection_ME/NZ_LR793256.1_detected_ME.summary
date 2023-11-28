@@ -1,0 +1,45 @@
+
+##################### Main parameters of the ICEscreen analysis #####################
+Maximum distance in CDS between consecutive SPs within a segments:	100
+Maximum distance in CDS between consecutive SPs within an IME element:	14
+
+
+##################### ICEscreen statistics for genome accession NZ_LR793256.1 #####################
+
+##### Mobile elements #####
+## Number of complete elements
+Complete ICE (4 types of SP):	1
+Complete IME (R+I, R+C+I with distance between consecutive SPs <= 14 CDSs):	0
+## Number of complete modules
+Conjugation module (R+C+V):	1
+Mobilizable element (R+C with distance between consecutive SPs <= 14 CDS):	0
+## Number of partial elements
+Partial ICE (at least V):	0
+Other partial element (R+C, R+V, V+C with distance between consecutive SPs > 14 CDS):	2
+## Composite elements
+Total nested elements (partial or complete):	2
+Host element:	1
+Guest element:	1
+Element that are both host and guest:	0
+
+##### Signature proteins (SPs) #####
+## Total SPs detected
+Total SPs:	14
+Total Integrase:	5
+Total Relaxase:	4
+Total Coupling protein:	3
+Total VirB4:	2
+Fragmented SPs:	0
+## Unassigned SPs
+Unassigned SPs:	3
+Unassigned Integrase:	3
+Unassigned Relaxase:	0
+Unassigned Coupling protein:	0
+Unassigned VirB4:	0
+
+##### Segments #####
+Number of segments with one element:	0
+Number of segments with several elements:	2
+Number of segments with nested elements:	1
+Number of segments with exclusively isolated SPs to manually verify:	0
+

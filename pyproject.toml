@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "diff-icescreen"
+version = "0.1.0"
+description = ""
+authors = ["Nicolas Cellier <contact@celliern.io>"]
+readme = "README.md"
+packages = [{ include = "diff_icescreen" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.1.3"
+typer = "^0.9.0"
+
+[tool.poetry.scripts]
+icediff = "diff_icescreen.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
