@@ -1,5 +1,6 @@
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Dict, Optional
+from typing_extensions import Annotated
 import pandas as pd
 import typer
 from .core import IceScreenCompare
@@ -10,7 +11,7 @@ DEFAULT_COL_SUBSET = "CDS_locus_tag,Profile_name,Id_of_blast_most_similar_ref_SP
 app = typer.Typer()
 
 
-def read_dataset_ref(path: str) -> dict[str, str]:
+def read_dataset_ref(path: str) -> Dict[str, str]:
     phylum_mapping = (
         pd.read_csv(path)[["h_accession", "tax_phylum"]]
         .drop_duplicates()
@@ -20,7 +21,7 @@ def read_dataset_ref(path: str) -> dict[str, str]:
     return phylum_mapping
 
 
-def add_phylum_column(df: pd.DataFrame, phylum_mapping: dict[str, str]) -> pd.DataFrame:
+def add_phylum_column(df: pd.DataFrame, phylum_mapping: Dict[str, str]) -> pd.DataFrame:
     df["phylum"] = df.index.get_level_values("Genome_accession").map(phylum_mapping)
     df = df.set_index("phylum", append=True).reorder_levels(
         ["phylum", "Genome_accession", "CDS_num"]

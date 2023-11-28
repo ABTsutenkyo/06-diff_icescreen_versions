@@ -1,3 +1,4 @@
+from typing import Dict, List, Optional, Union
 import pandas as pd
 from dataclasses import dataclass
 from pathlib import Path
@@ -7,7 +8,7 @@ from pathlib import Path
 class AccessionDiff:
     ref_file: Path
     cmp_file: Path
-    col_subset: str | list[str] | None = None
+    col_subset: Optional[Union[str, List[str]]] = None
 
     def __post_init__(self):
         self.ref_file = Path(self.ref_file)
@@ -58,7 +59,7 @@ def extract_file_from_acc_folder(folder: Path):
 class IceScreenCompare:
     ref: Path
     cmp: Path
-    col_subset: list[str] | None = None
+    col_subset: Optional[Union[str, List[str]]] = None
 
     def __post_init__(self):
         self.ref = Path(self.ref)
@@ -68,23 +69,23 @@ class IceScreenCompare:
         self._check_accessions()
 
     @property
-    def accessions(self) -> list[str]:
+    def accessions(self) -> List[str]:
         return [str(file.stem) for file in self.ref.glob("*")]
 
     @property
-    def ref_files(self) -> list[Path]:
+    def ref_files(self) -> List[Path]:
         return {
             acc: extract_file_from_acc_folder(self.ref / acc) for acc in self.accessions
         }
 
     @property
-    def cmp_files(self) -> list[Path]:
+    def cmp_files(self) -> List[Path]:
         return {
             acc: extract_file_from_acc_folder(self.cmp / acc) for acc in self.accessions
         }
 
     @property
-    def comparators(self) -> dict[str, AccessionDiff]:
+    def comparators(self) -> Dict[str, AccessionDiff]:
         cmp_files = self.cmp_files
         ref_files = self.ref_files
         return {
