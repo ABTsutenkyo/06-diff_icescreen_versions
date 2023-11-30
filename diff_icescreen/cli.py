@@ -6,18 +6,28 @@ import typer
 from .core import IceScreenCompare
 
 
-DEFAULT_COL_SUBSET = "CDS_locus_tag,Profile_name,Id_of_blast_most_similar_ref_SP"
+DEFAULT_COL_SUBSET = ",".join(
+    (
+        "ICE_IME_id",
+        "ICE_IME_id_need_manual_curation",
+        "Segment_number",
+        "Associated_element_type_of_blast_most_similar_ref_SP",
+        "CDS_Protein_type",
+        "CDS_protein_id",
+        "CDS_strand",
+        "CDS_start",
+        "CDS_end",
+        "CDS_length",
+    )
+)
 
 app = typer.Typer()
 
 
 def read_dataset_ref(path: str) -> Dict[str, str]:
-    phylum_mapping = (
-        pd.read_csv(path)[["h_accession", "tax_phylum"]]
-        .drop_duplicates()
-        .set_index("h_accession")["tax_phylum"]
-        .to_dict()
-    )
+    df = pd.read_csv(path)[["h_accession", "tax_phylum"]].drop_duplicates()
+    df["h_accession"] = df["h_accession"].str.extract(r"^(\w+)(\.\d+)?$")[0]
+    phylum_mapping = df.set_index("h_accession")["tax_phylum"].to_dict()
     return phylum_mapping
 
 

@@ -2,6 +2,7 @@ from typing import Dict, List, Optional, Union
 import pandas as pd
 from dataclasses import dataclass
 from pathlib import Path
+from tqdm import tqdm
 
 
 @dataclass
@@ -70,7 +71,7 @@ class IceScreenCompare:
 
     @property
     def accessions(self) -> List[str]:
-        return [str(file.stem) for file in self.ref.glob("*")]
+        return [str(file.stem) for file in self.ref.glob("*") if file.is_dir()]
 
     @property
     def ref_files(self) -> List[Path]:
@@ -97,7 +98,7 @@ class IceScreenCompare:
 
     def compare_all(self) -> pd.DataFrame:
         return pd.concat(
-            [self.comparators[acc].compare() for acc in self.accessions],
+            [self.comparators[acc].compare() for acc in tqdm(self.accessions)],
             keys=self.accessions,
             names=["Genome_accession"],
             axis=0,
@@ -105,7 +106,7 @@ class IceScreenCompare:
 
     def _check_accessions(self):
         acc_ref = set(self.accessions)
-        acc_cmp = set([str(file.stem) for file in self.cmp.glob("*")])
+        acc_cmp = set([str(file.stem) for file in self.cmp.glob("*") if file.is_dir()])
         if acc_ref != acc_cmp:
             raise ValueError(
                 "Accessions available in in ref and cmp folders do not match.\n"
